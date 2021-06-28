@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -54,13 +55,13 @@ public class BaselineComparisonTest extends AbstractGraphGenerationTest {
         prepareReportForBuild(5, 3, reportMapForBuild);
         prepareReportForBuild(4, 0, reportMapForPreviousBuild);
         prepareReportForBuild(3, 0, reportMapForBuildNumber3);
-        when(reportMap.getPerformanceReportMap()).thenReturn(reportMapForBuild);
+        lenient().when(reportMap.getPerformanceReportMap()).thenReturn(reportMapForBuild);
 
 
-        when(prevBuild.getAction(PerformanceBuildAction.class)).thenReturn(prevAction);
-        when(prevAction.getBuild()).thenReturn(prevBuild);
-        when(prevAction.getPerformanceReportMap(false)).thenReturn(prevReportMap);
-        when(prevReportMap.getPerformanceReportMap()).thenReturn(reportMapForPreviousBuild);
+        lenient().when(prevBuild.getAction(PerformanceBuildAction.class)).thenReturn(prevAction);
+        lenient().when(prevAction.getBuild()).thenReturn(prevBuild);
+        lenient().when(prevAction.getPerformanceReportMap(false)).thenReturn(prevReportMap);
+        lenient().when(prevReportMap.getPerformanceReportMap()).thenReturn(reportMapForPreviousBuild);
 
         when(buildWithNumber3.getAction(PerformanceBuildAction.class)).thenReturn(actionWithNumber3);
         when(actionWithNumber3.getBuild()).thenReturn(buildWithNumber3);

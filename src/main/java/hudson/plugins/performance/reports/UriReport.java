@@ -167,7 +167,7 @@ public class UriReport extends AbstractReport implements Serializable, ModelObje
         summarizerSize += sample.getSummarizerSamples();
         summarizerErrors += sample.getSummarizerErrors();
         sizeInKb += sample.getSizeInKb();
-        
+
         if (start == null || sample.getDate().before(start)) {
             start = sample.getDate();
         }
@@ -501,7 +501,7 @@ public class UriReport extends AbstractReport implements Serializable, ModelObje
 
         for (Map.Entry<Long, Long> responseTimeOccurrence : responseTimesHistogram.entrySet()) {
             cumulativeTotal += responseTimeOccurrence.getValue();
-            percentiles.addOrUpdate(100.0*cumulativeTotal/totalNoOfSamples, responseTimeOccurrence.getKey()); // float value will result in smoother curve
+            percentiles.addOrUpdate(100.0*cumulativeTotal/totalNoOfSamples, responseTimeOccurrence.getKey().floatValue()); // float value will result in smoother curve
         }
 
         ChartUtil.generateGraph(request, response,
@@ -619,18 +619,18 @@ public class UriReport extends AbstractReport implements Serializable, ModelObje
     public double getAverageSizeInKb() {
         return SafeMaths.roundTwoDecimals(SafeMaths.safeDivide(sizeInKb, samplesCount()));
     }
-    
+
     public double getTotalTrafficInKb() {
         return SafeMaths.roundTwoDecimals(sizeInKb);
     }
-    
+
     public double getAverageSizeInKbDiff() {
         if (lastBuildUriReport == null) {
             return 0;
         }
         return SafeMaths.roundTwoDecimals(getAverageSizeInKb() - lastBuildUriReport.getAverageSizeInKb());
     }
-    
+
     public double getTotalTrafficInKbDiff() {
         if (lastBuildUriReport == null) {
             return 0;

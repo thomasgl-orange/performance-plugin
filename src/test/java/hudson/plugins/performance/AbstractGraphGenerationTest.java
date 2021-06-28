@@ -1,5 +1,6 @@
 package hudson.plugins.performance;
 
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -44,14 +45,14 @@ public abstract class AbstractGraphGenerationTest {
     public void baseSetup() throws Exception {
         report = JMeterTestHelper.parse("/JMeterResults.jtl");
         report.setBuildAction(performanceBuildAction);
-        when(build.getDisplayName()).thenReturn("mock");
-        when(response.getOutputStream()).thenReturn(mock(ServletOutputStream.class));
-        when(build.getAction(PerformanceBuildAction.class)).thenReturn(performanceBuildAction);
-        when(performanceBuildAction.getPerformanceReportMap()).thenReturn(reportMap);
-        when(performanceBuildAction.getBuild()).thenReturn(build);
-        when(performanceBuildAction.getParserByDisplayName("JmeterSummarizer")).thenReturn(null);
-        when(performanceBuildAction.getParserByDisplayName("Iago")).thenReturn(null);
-        when(reportMap.getPerformanceReport("JMeterResults.jtl")).thenReturn(report);
+        lenient().when(build.getDisplayName()).thenReturn("mock");
+        lenient().when(response.getOutputStream()).thenReturn(mock(ServletOutputStream.class));
+        lenient().when(build.getAction(PerformanceBuildAction.class)).thenReturn(performanceBuildAction);
+        lenient().when(performanceBuildAction.getPerformanceReportMap()).thenReturn(reportMap);
+        lenient().when(performanceBuildAction.getBuild()).thenReturn(build);
+        lenient().when(performanceBuildAction.getParserByDisplayName("JmeterSummarizer")).thenReturn(null);
+        lenient().when(performanceBuildAction.getParserByDisplayName("Iago")).thenReturn(null);
+        lenient().when(reportMap.getPerformanceReport("JMeterResults.jtl")).thenReturn(report);
     }
 
     protected void setGraphType(String graphType) {
