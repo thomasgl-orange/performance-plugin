@@ -44,8 +44,8 @@
     </distributionManagement>
 
     <properties>
-        <jenkins.version>2.263.1</jenkins.version>
-        <bom>2.263.x</bom>
+        <jenkins.version>2.277.1</jenkins.version>
+        <bom>2.277.x</bom>
         <java.level>8</java.level>
         <concurrency>2</concurrency>
         <!-- disable SpotBugs temporarily since there are XX bugs -->
